@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <title>Golang CRUD</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h3>Data Nasabah</h3>
+        <a href="/nasabah/add" class="btn btn-sm btn-primary">Tambah Data</a>
+        <hr />
+        <table class="table table-sriped table-hover">
+            <thead>
+                <tr>
+                    <th>Nama Lengkap</th>
+                    <th>Alamat</th>
+                    <th>Tempat Lahir</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Rata-Rata Penghasilan</th>
+                    <th>Jenis Nasabah</th>
+                    <th>ID Customer</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .nasabah }}
+                <tr>
+                    <td>{{ .NamaLengkap }}</td>
+                    <td>{{ .Alamat }}</td>
+                    <td>{{ .TempatLahir }}</td>
+                    <td>{{ .TanggalLahir }}</td>
+                    <td>{{ .RataPenghasilan }}</td>
+                    <td>{{ .JenisNasabah }}</td>
+                    <td>{{ .IdCustomer }}</td>
+                    <td>
+                        <a href="/nasabah/edit?id={{.Id}}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/nasabah/delete?id={{.Id}}"
+                            onclick="return confirm('Aapakah anda yakin ingin menghapus data?')"
+                            class="btn btn-sm btn-danger">Hapus</a>
+                    </td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

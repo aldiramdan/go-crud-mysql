@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <title>Golang CRUD</title>
+
+    <style>
+        .container {
+            max-width: 550px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h3>Ubah Data Nasabah</h3>
+        <a href="/nasabah" class="btn btn-sm btn-primary">Lihat Data</a>
+        <hr />
+
+        {{ if .message}}
+        <div class="alert alert-success">
+            {{ .message}}
+        </div>
+        {{ end }}
+
+        <form action="/nasabah/edit" method="post">
+            <div class="form-group">
+                <label for="">Nama Lengkap</label>
+                <input type="text" name="nama_lengkap" value="{{ .nasabah.NamaLengkap }}" class="form-control {{ if .validation.NamaLengkap }} is-invalid
+                    {{ end }}" />
+                <div class="invalid-feedback">
+                    {{ .validation.NamaLengkap }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Alamat</label>
+                <textarea name="alamat" value="{{ .nasabah.Alamat }}" class="form-control {{ if .validation.Alamat }} is-invalid
+                    {{ end }}">{{ .nasabah.Alamat }}</textarea>
+                <div class="invalid-feedback">
+                    {{ .validation.Alamat }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Tempat Lahir</label>
+                <input type="text" name="tempat_lahir" value="{{ .nasabah.TempatLahir }}" class="form-control {{ if .validation.TempatLahir }} is-invalid
+                    {{ end }}" />
+                <div class="invalid-feedback">
+                    {{ .validation.TempatLahir }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Tanggal Lahir</label>
+                <input type="date" name="tanggal_lahir" value="{{ .nasabah.TanggalLahir }}" class="form-control {{ if .validation.TanggalLahir }} is-invalid
+                    {{ end }}" />
+                <div class="invalid-feedback">
+                    {{ .validation.TanggalLahir }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Rata-Rata Penghasilan</label>
+                <input type="number" name="avg_penghasilan" value="{{ .nasabah.RataPenghasilan }}" class="form-control {{ if .validation.RataPenghasilan }} is-invalid
+                    {{ end }}" />
+                <div class="invalid-feedback">
+                    {{ .validation.RataPenghasilan }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Jenis Kelamin</label>
+                <select name="jenis_nasabah" value="{{ .nasabah.JenisNasabah }}" class="form-control {{ if .validation.JenisNasabah }} is-invalid
+                    {{ end }}">
+                    <option value="">Pilih Jenis Nasabah</option>
+                    <option {{ if eq .nasabah.JenisNasabah `1` }} selected {{ end }} value="1">
+                        Perorangan
+                    </option>
+                    <option {{ if eq .nasabah.JenisNasabah `2` }} selected {{ end }} value="2">
+                        Perusahaan
+                    </option>
+                    <option {{ if eq .nasabah.JenisNasabah `3` }} selected {{ end }} value="3">
+                        WIC
+                    </option>
+                </select>
+                <div class="invalid-feedback">
+                    {{ .validation.JenisNasabah }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">ID Customer</label>
+                <input type="text" name="id_customer" value="{{ .nasabah.IdCustomer }}" class="form-control {{ if .validation.IdCustomer }} is-invalid
+                    {{ end }}" />
+                <div class="invalid-feedback">
+                    {{ .validation.IdCustomer }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" name="id" value="{{ .nasabah.Id }}">
+                <button class="btn btn-primary btn-block" type="submit">
+                    UBAH DATA
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
